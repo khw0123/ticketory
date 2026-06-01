@@ -1,0 +1,362 @@
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+  "https://gxfhplrwkalsiirczdea.supabase.co",
+  "sb_publishable_XaigQ9yBb4pljdIWysP2nQ_vB3-NK2X",
+);
+
+const { data, error } = await supabase.auth.getUser();
+
+console.log(data);
+console.log(error);
+
+let viewer = document.querySelector(".viewer");
+let btnAll = document.querySelector(".btnAll");
+let btn1 = document.querySelector(".btn1");
+let btn2 = document.querySelector(".btn2");
+let btn3 = document.querySelector(".btn3");
+let btn4 = document.querySelector(".btn4");
+let btn = document.querySelectorAll(".btn");
+
+let toLoginPage = document.querySelector(".loginBtn");
+let toRegisterPage = document.querySelector(".registerBtn");
+let toAddPage = document.querySelector(".addBtn");
+
+let startPage = document.querySelector(".startPage");
+let registerPage = document.querySelector(".registerPage");
+let loginPage = document.querySelector(".loginPage");
+let mainPage = document.querySelector(".mainPage");
+let addPage = document.querySelector(".addPage");
+
+let pages = ["startPage", "registerPage", "loginPage", "mainPage", "addPage"];
+let page = pages[0];
+console.log(page);
+
+function render(page) {
+  page = pages[page];
+  console.log(page);
+  startPage.classList.add("none");
+  registerPage.classList.add("none");
+  loginPage.classList.add("none");
+  mainPage.classList.add("none");
+  addPage.classList.add("none");
+
+  if (page === "startPage") {
+    startPage.classList.remove("none");
+    console.log("clears");
+  } else if (page === "registerPage") {
+    registerPage.classList.remove("none");
+    console.log("clearr");
+  } else if (page === "loginPage") {
+    loginPage.classList.remove("none");
+    console.log("clearl");
+  } else if (page === "mainPage") {
+    mainPage.classList.remove("none");
+    console.log("clearm");
+  } else if (page === "addPage") {
+    addPage.classList.remove("none");
+    console.log("cleara");
+  }
+}
+const {
+  data: { session },
+} = await supabase.auth.getSession();
+
+if (session) {
+  console.log("로그인 상태");
+  render(3);
+} else {
+  console.log("로그인 필요");
+  render(0);
+}
+
+toLoginPage.addEventListener("click", () => {
+  render(2);
+});
+toRegisterPage.addEventListener("click", () => {
+  render(1);
+});
+toAddPage.addEventListener("click", () => {
+  render(4);
+});
+
+let title = document.querySelector(".text");
+let icon = document.querySelector(".icon");
+let titles = ["sport", "classic", "concert", "travel", "all"];
+let titlesKr = ["스포츠", "클래식", "콘서트", "교통", "전체"];
+let iconTitles = [
+  "baseball-bat-ball",
+  "music",
+  "microphone-lines",
+  "plane",
+  "bars",
+];
+
+function btnClick(num, content) {
+  if (num === 5) {
+    viewer.classList.remove("btn1", "btn2", "btn3", "btn4");
+    viewer.classList.add("btnAll");
+  } else {
+    viewer.classList.remove("btnAll", "btn1", "btn2", "btn3", "btn4");
+    viewer.classList.add("btn" + num);
+  }
+  icon.innerHTML = `<i class="fa-solid fa-${content} fa-2xl"></i>`;
+  title.innerHTML = `<h1>${titlesKr[num - 1]}</h1>`;
+  // console.log(icon);
+}
+function btnHover(name, num) {
+  name.innerHTML = /* html */ `
+     <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>
+     <h1 class="btnText">${titlesKr[num - 1]}</h1>`;
+}
+function btnHoverOut(name, num) {
+  name.innerHTML = /* html */ `
+     <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
+}
+
+btnClick(5, iconTitles[4]); // 접속 하자마자
+
+btnAll.addEventListener("click", () => btnClick(5, iconTitles[4]));
+btn1.addEventListener("click", () => btnClick(1, iconTitles[0]));
+btn2.addEventListener("click", () => btnClick(2, iconTitles[1]));
+btn3.addEventListener("click", () => btnClick(3, iconTitles[2]));
+btn4.addEventListener("click", () => btnClick(4, iconTitles[3]));
+
+btnAll.addEventListener("mouseenter", () => btnHover(btnAll, 5));
+btn1.addEventListener("mouseenter", () => btnHover(btn1, 1));
+btn2.addEventListener("mouseenter", () => btnHover(btn2, 2));
+btn3.addEventListener("mouseenter", () => btnHover(btn3, 3));
+btn4.addEventListener("mouseenter", () => btnHover(btn4, 4));
+
+btnAll.addEventListener("mouseleave", () => btnHoverOut(btnAll, 5));
+btn1.addEventListener("mouseleave", () => btnHoverOut(btn1, 1));
+btn2.addEventListener("mouseleave", () => btnHoverOut(btn2, 2));
+btn3.addEventListener("mouseleave", () => btnHoverOut(btn3, 3));
+btn4.addEventListener("mouseleave", () => btnHoverOut(btn4, 4));
+
+let signUp = document.getElementById("signUp");
+signUp.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  console.log("submit");
+
+  const email = document.getElementById("signUpId").value;
+  const password = document.getElementById("signUpPw").value;
+  const nickname = document.getElementById("signUpNick").value;
+  console.log(nickname);
+
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        nickname,
+      },
+    },
+  });
+
+  if (error == null) {
+    console.log("clear");
+    alert("가입 되었습니다.");
+    render(0);
+  } else {
+    alert("retry");
+  }
+
+  console.log(data, error);
+});
+
+let signIn = document.getElementById("signIn");
+signIn.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  console.log("submit");
+
+  const email = document.getElementById("signInId").value;
+  const password = document.getElementById("signInPw").value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error == null) {
+    console.log("clear");
+    alert("로그인 되었습니다.");
+    render(3);
+  } else {
+    alert("retry");
+  }
+
+  console.log(data, error);
+});
+
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log(event);
+
+  if (session) {
+    render(3);
+    console.log("sclear");
+  } else {
+    render(0);
+  }
+});
+
+let category = ["sport", "classic", "concert", "travel"];
+let addCategory = document.getElementById("addCategory");
+let CategoryIcon = document.getElementById("addIcon");
+let IconActive = document.querySelector(".selectIconBtn");
+let selectedIcon = "";
+let iconReset = document.getElementById("iconReset");
+
+iconReset.addEventListener("click", () => {
+  IconActive.classList.remove("active");
+  CategoryIcon.classList.add("none");
+  IconActive.innerHTML = /* html */ `
+      <i class="fa-regular fa-square-plus fa-2xl"></i>
+    `;
+  IconActive.style.backgroundColor = "White";
+  CategoryIcon.innerHTML = "카테고리를 선택해주세요.";
+  addCategory.value = "";
+});
+
+IconActive.addEventListener("click", () => {
+  console.log("click");
+  if (IconActive.classList.contains("active")) {
+    IconActive.classList.remove("active");
+    CategoryIcon.classList.add("none");
+    IconActive.innerHTML = /* html */ `
+      <i class="fa-regular fa-square-plus fa-2xl"></i>
+    `;
+    IconActive.style.backgroundColor = "White";
+  } else {
+    IconActive.classList.add("active");
+    CategoryIcon.classList.remove("none");
+    IconActive.innerHTML = /* html */ `
+      <i class="fa-regular fa-square-minus fa-2xl"></i>
+    `;
+    IconActive.style.backgroundColor = "White";
+  }
+});
+
+window.iconClicked = function (iconName) {
+  IconActive.innerHTML = "";
+  IconActive.innerHTML = /* html */ `
+    <i class="fa-solid fa-${iconName} fa-2xl activeIcon" style="color: white;"></i>
+  `;
+  if (iconName === "default") {
+    IconActive.innerHTML = /* html */ `
+      <i class="fa-regular fa-square-plus fa-2xl"></i>
+    `;
+    IconActive.style.backgroundColor = "White";
+    CategoryIcon.classList.add("none");
+  } else {
+    IconActive.style.backgroundColor = "seagreen";
+  }
+  selectedIcon = iconName;
+};
+
+CategoryIcon.innerHTML = "카테고리를 선택해주세요.";
+
+function categoryValue() {
+  switch (addCategory.value) {
+    case "default":
+      CategoryIcon.innerHTML = "";
+      CategoryIcon.innerHTML = "카테고리를 선택해주세요.";
+      iconClicked("default");
+      break;
+    case "sport":
+      CategoryIcon.innerHTML = "";
+      CategoryIcon.innerHTML = /* html */ `
+      <div class="icon-p">
+        <i class="fa-solid fa-baseball fa-xl " style="color: white;" onClick="iconClicked('baseball'); "></i>
+      </div>
+      <div class="icon-p">
+        <i class="fa-solid fa-basketball fa-xl" style="color: white;" onClick="iconClicked('basketball'); "></i>
+      </div>
+      <div class="icon-p">
+        <i class="fa-solid fa-volleyball fa-xl" style="color: white;" onClick="iconClicked('volleyball'); "></i>
+      </div>
+      <div class="icon-p">
+        <i class="fa-solid fa-futbol fa-xl" style="color: white;" onClick="iconClicked('futbol'); "></i>
+      </div>
+            `;
+      break;
+    case "classic":
+      CategoryIcon.innerHTML = "";
+      CategoryIcon.innerHTML = /* html */ `
+      <div class="icon-p">
+        <i class="fa-solid fa-music fa-xl" style="color: white;" onClick="iconClicked('music'); "></i>
+      </div>`;
+      break;
+    case "concert":
+      CategoryIcon.innerHTML = "";
+      CategoryIcon.innerHTML = /* html */ `
+      <div class="icon-p">
+        <i class="fa-solid fa-microphone fa-xl" style="color: white;" onClick="iconClicked('microphone'); "></i>
+      </div>`;
+      break;
+    case "travel":
+      CategoryIcon.innerHTML = "";
+      CategoryIcon.innerHTML = /* html */ `
+      <div class="icon-p">
+        <i class="fa-solid fa-bus fa-xl" style="color: white;" onClick="iconClicked('bus'); "></i>
+      </div>
+      <div class="icon-p">
+        <i class="fa-solid fa-train fa-xl" style="color: white;" onClick="iconClicked('train'); "></i>  
+      </div>
+      <div class="icon-p">
+        <i class="fa-solid fa-plane fa-xl" style="color: white;" onClick="iconClicked('plane'); "></i>
+      </div>
+      <div class="icon-p">
+        <i class="fa-solid fa-ship fa-xl" style="color: white;" onClick="iconClicked('ship'); "></i>
+      </div>`;
+      break;
+  }
+}
+
+addCategory.addEventListener("change", categoryValue);
+
+let add = document.getElementById("add");
+add.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  console.log("submit");
+
+  const category = addCategory.value;
+  const ticketName = document.getElementById("ticketName").value;
+  const ticketDate = document.getElementById("datepicker").value;
+  const description = document.getElementById("textarea").value;
+  console.log({ category, ticketName, ticketDate, description });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  console.log(user.id);
+
+  const result = await supabase.from("tickets").insert([
+    {
+      user_id: user.id,
+      title: ticketName,
+      category: category,
+      minicategory: selectedIcon,
+      date: ticketDate,
+      memo: description,
+    },
+  ]);
+  console.log(result);
+  if (error == null) {
+    console.log("clear");
+    alert("저장되었습니다.");
+    add.reset();
+    IconActive.classList.remove("active");
+    CategoryIcon.classList.add("none");
+    IconActive.innerHTML = /* html */ `
+      <i class="fa-regular fa-square-plus fa-2xl"></i>
+    `;
+    IconActive.style.backgroundColor = "White";
+    CategoryIcon.innerHTML = "카테고리를 선택해주세요.";
+    addCategory.value = "";
+    render(3);
+  } else {
+    alert("retry");
+  }
+});

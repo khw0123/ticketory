@@ -1,0 +1,185 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20261704 강현우</title>
+    <!-- style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- script.js -->
+    <script defer src="script.js" type="module"></script>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/747f13c723.js" crossorigin="anonymous"></script>
+    <!-- datepicker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/datepicker.css">
+    <script>
+      $( function() {
+        $( "#datepicker" ).datepicker({showButtonPanel: true});
+        $( "#datepicker" ).datepicker( "option", "dateFormat", "yy.mm.dd" );
+       } );
+    </script>
+
+    <script>
+      $(document).ready(function(){               
+        $.datepicker.setDefaults({
+        closeText: "닫기",
+        currentText: "오늘",
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        weekHeader: "주",
+        yearSuffix: '년'
+        });    
+      });
+
+    </script>
+  </head>
+  <body>
+    <!-- start page -->
+    <div class="wrap startPage formPage none">
+      <div class="start">
+        <h1>Ticketory</h1>
+        <div class="btn-group">
+          <!-- test user : id = test@test.com pw = testtest, 로그아웃 구현X -->
+          <div class="userBtn loginBtn">로그인</div>
+          <div class="userBtn registerBtn">회원가입</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- main tab -->
+    <div class="wrap mainPage none">
+      <div class="header">
+        <div class="title">
+          <div class="icon">1</div>
+          <div class="text">2</div>
+        </div>
+        <div class="add">
+          <div class="addBtn">예매내역 추가하기</div>
+        </div>
+      </div>
+      <div class="viewer">
+        
+      </div>
+      <div class="navBar">
+        <div class="btnAll btn">
+          <i class="fa-solid fa-bars fa-2xl" style="color: rgb(255, 255, 255);"></i>
+        </div>
+        <div class="btn1 btn">
+          <i class="fa-solid fa-baseball-bat-ball fa-2xl" style="color: rgb(255, 255, 255);"></i>
+        </div>
+        <div class="btn2 btn">
+          <i class="fa-solid fa-music fa-2xl" style="color: rgb(255, 255, 255);"></i>
+        </div>
+        <div class="btn3 btn">
+          <i class="fa-solid fa-microphone-lines fa-2xl" style="color: rgb(255, 255, 255);"></i>
+        </div>
+        <div class="btn4 btn">
+          <i class="fa-solid fa-plane fa-2xl" style="color: rgb(255, 255, 255);"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- add page -->
+     <div class="wrap addPage ">
+      <div class="addPlan">
+        <div class="title-area">
+          <h1>예매 내역(티켓) 추가</h1>
+        </div>
+        <form id="add">
+          <div class="selectCategory"> 
+            <select name="category" id="addCategory" class="formInput" required>
+              <option selected disabled value="">카테고리</option>
+              <option value="sport">스포츠</option>
+              <option value="classic">클래식</option>
+              <option value="concert">콘서트</option>
+              <option value="travel">교통</option>
+            </select>
+          </div>
+          <div class="ndFlex">
+
+            <div class="addIconArea">
+              <div class="selectIconBtn"><i class="fa-regular fa-square-plus fa-2xl"></i></div>
+              <div id="addIcon" class="none"></div>
+            </div>
+
+            <div class="rdFlex">
+              <div class="ticketName">
+                <input type="text" id="ticketName" placeholder="티켓 이름" class="formInput wideInput" required>
+              </div>
+              <div class="ticketDate">
+                <input type="text" id="datepicker" class="formInput wideInput" required>
+              </div>
+              <div class="textarea">
+                <textarea id="textarea" rows="10" class="formInput" style="width: 500px; height: 140px; resize:none;" required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="btnGroup">
+            <input type="reset" value="초기화" id="iconReset">
+            <input type="submit" value="추가하기" >
+          </div> 
+        </form>
+      </div>
+     </div>
+
+
+    <!-- register page -->
+    <div class="wrap registerPage formPage none">
+      <div class="register">
+        <!-- <img src="/img/arrow_left_alt_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" alt="" class="backBtn"> -->
+        <h1>회원가입</h1>
+        <form id="signUp">
+          <div class="inputFlex">
+            <div class="inputFlexItem">
+              <h1 class="formLabel">Email</h1>
+              <input type="email" id="signUpId" class="formInput" required>
+            </div>
+            <div class="inputFlexItem">
+              <h1 class="formLabel">nickname</h1>
+              <input type="text" id="signUpNick" class="formInput" required>
+            </div>
+            <div class="inputFlexItem">
+              <h1 class="formLabel">Password</h1>
+              <input type="password" id="signUpPw" class="formInput" required>
+            </div>
+            <div class="inputFlexItem">
+              <input type="submit" class="submitBtn formInput" id="upSubmit" value="가입하기">
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- login page -->
+     <div class="wrap loginPage formPage none">
+      <div class="login">
+        <!-- <img src="/img/arrow_left_alt_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" alt="" class="backBtn" > -->
+        <h1>로그인</h1>
+        <form id="signIn">
+          <div class="inputFlex">
+            <div class="inputFlexItem">
+              <h1 class="formLabel">Email</h1>
+              <input type="email" id="signInId" class="formInput" required>
+            </div>
+            <div class="inputFlexItem">
+              <h1 class="formLabel">Password</h1>
+              <input type="password" id="signInPw" class="formInput" required>
+            </div>
+            <div class="inputFlexItem">
+              <input type="submit" class="submitBtn formInput" id="upSubmit" value="LOGIN">
+            </div>
+        </form>
+      </div>
+     </div>
+    
+    
+  </body>
+</html>
+           
