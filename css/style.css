@@ -72,13 +72,22 @@ body {
   width: 60px;
 }
 
-
+.viewer {
+  border: 1px solid;
+  width: 95%;
+  height: 400px;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: auto 80px;
+}
 
 .btn:hover {
   cursor: pointer;
 }
 
-.btnAll {
+.navBar .btnAll {
   background-color: green;
 }
 
