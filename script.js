@@ -358,5 +358,6 @@ add.addEventListener("submit", async (event) => {
     render(3);
   } else {
     alert("retry");
+    console.log(error);
   }
 });
