@@ -5,6 +5,13 @@ body {
 }
 
 
+.wrap {
+  width: 70%;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: 0px auto;
+}
 
 .btn {
   width: 70px;
@@ -29,10 +36,10 @@ body {
   width: 140px;
 }
 
-.btn1:hover,
-.btn2:hover,
-.btn3:hover,
-.btn4:hover {
+.navBar .btn1:hover,
+.navBar .btn2:hover,
+.navBar .btn3:hover,
+.navBar .btn4:hover {
   background-color: rgb(201, 67, 4);
 }
 
@@ -41,20 +48,17 @@ body {
   justify-content: space-around;
   width: 500px;
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 280px;
 }
 
 .header {
-  width: 85%;
+  width: 100%;
   position: relative;
   left: 0;
   right: 0;
-  margin: auto;
+  margin: 50px auto;
   height: 200px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 80px;
   border: 1px solid;
 }
 
@@ -74,13 +78,9 @@ body {
 
 .viewer {
   border: 1px solid;
-  width: 95%;
-  height: 400px;
-  position: relative;
-  left: 0;
-  right: 0;
-  margin: auto;
-  padding: auto 80px;
+  width: 100%;
+  height: 500px;
+  margin-top: 50px;
 }
 
 .btn:hover {

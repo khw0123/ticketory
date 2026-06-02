@@ -18,6 +18,12 @@ let btn3 = document.querySelector(".btn3");
 let btn4 = document.querySelector(".btn4");
 let btn = document.querySelectorAll(".btn");
 
+let btnAllContent = document.querySelector(".btnAllContent");
+let btn1Content = document.querySelector(".btn1Content");
+let btn2Content = document.querySelector(".btn2Content");
+let btn3Content = document.querySelector(".btn3Content");
+let btn4Content = document.querySelector(".btn4Content");
+
 let toLoginPage = document.querySelector(".loginBtn");
 let toRegisterPage = document.querySelector(".registerBtn");
 let toAddPage = document.querySelector(".addBtn");
@@ -40,24 +46,31 @@ function render(page) {
   loginPage.classList.add("none");
   mainPage.classList.add("none");
   addPage.classList.add("none");
-
-  if (page === "startPage") {
-    startPage.classList.remove("none");
-    console.log("clears");
-  } else if (page === "registerPage") {
-    registerPage.classList.remove("none");
-    console.log("clearr");
-  } else if (page === "loginPage") {
-    loginPage.classList.remove("none");
-    console.log("clearl");
-  } else if (page === "mainPage") {
-    mainPage.classList.remove("none");
-    console.log("clearm");
-  } else if (page === "addPage") {
-    addPage.classList.remove("none");
-    console.log("cleara");
+  readTickets();
+  switch (page) {
+    case "startPage":
+      startPage.classList.remove("none");
+      console.log("clears");
+      break;
+    case "registerPage":
+      registerPage.classList.remove("none");
+      console.log("clearr");
+      break;
+    case "loginPage":
+      loginPage.classList.remove("none");
+      console.log("clearl");
+      break;
+    case "mainPage":
+      mainPage.classList.remove("none");
+      console.log("clearm");
+      break;
+    case "addPage":
+      addPage.classList.remove("none");
+      console.log("cleara");
+      break;
   }
 }
+
 const {
   data: { session },
 } = await supabase.auth.getSession();
@@ -114,13 +127,30 @@ function btnHoverOut(name, num) {
      <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
 }
 
-btnClick(5, iconTitles[4]); // 접속 하자마자
+// 접속 하자마자
+btnClick(5, iconTitles[4]);
+viewerShow("btnAll");
 
-btnAll.addEventListener("click", () => btnClick(5, iconTitles[4]));
-btn1.addEventListener("click", () => btnClick(1, iconTitles[0]));
-btn2.addEventListener("click", () => btnClick(2, iconTitles[1]));
-btn3.addEventListener("click", () => btnClick(3, iconTitles[2]));
-btn4.addEventListener("click", () => btnClick(4, iconTitles[3]));
+btnAll.addEventListener("click", () => {
+  btnClick(5, iconTitles[4]);
+  viewerShow("btnAll");
+});
+btn1.addEventListener("click", () => {
+  btnClick(1, iconTitles[0]);
+  viewerShow("btn1");
+});
+btn2.addEventListener("click", () => {
+  btnClick(2, iconTitles[1]);
+  viewerShow("btn2");
+});
+btn3.addEventListener("click", () => {
+  btnClick(3, iconTitles[2]);
+  viewerShow("btn3");
+});
+btn4.addEventListener("click", () => {
+  btnClick(4, iconTitles[3]);
+  viewerShow("btn4");
+});
 
 btnAll.addEventListener("mouseenter", () => btnHover(btnAll, 5));
 btn1.addEventListener("mouseenter", () => btnHover(btn1, 1));
@@ -133,6 +163,46 @@ btn1.addEventListener("mouseleave", () => btnHoverOut(btn1, 1));
 btn2.addEventListener("mouseleave", () => btnHoverOut(btn2, 2));
 btn3.addEventListener("mouseleave", () => btnHoverOut(btn3, 3));
 btn4.addEventListener("mouseleave", () => btnHoverOut(btn4, 4));
+
+function viewerShow(page) {
+  switch (page) {
+    case "btnAll":
+      btnAllContent.classList.remove("none");
+      btn1Content.classList.add("none");
+      btn2Content.classList.add("none");
+      btn3Content.classList.add("none");
+      btn4Content.classList.add("none");
+      break;
+    case "btn1":
+      btnAllContent.classList.add("none");
+      btn1Content.classList.remove("none");
+      btn2Content.classList.add("none");
+      btn3Content.classList.add("none");
+      btn4Content.classList.add("none");
+      break;
+    case "btn2":
+      btnAllContent.classList.add("none");
+      btn1Content.classList.add("none");
+      btn2Content.classList.remove("none");
+      btn3Content.classList.add("none");
+      btn4Content.classList.add("none");
+      break;
+    case "btn3":
+      btnAllContent.classList.add("none");
+      btn1Content.classList.add("none");
+      btn2Content.classList.add("none");
+      btn3Content.classList.remove("none");
+      btn4Content.classList.add("none");
+      break;
+    case "btn4":
+      btnAllContent.classList.add("none");
+      btn1Content.classList.add("none");
+      btn2Content.classList.add("none");
+      btn3Content.classList.add("none");
+      btn4Content.classList.remove("none");
+      break;
+  }
+}
 
 let signUp = document.getElementById("signUp");
 signUp.addEventListener("submit", async (event) => {
@@ -361,3 +431,34 @@ add.addEventListener("submit", async (event) => {
     console.log(error);
   }
 });
+
+async function readTickets() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data: tickets, error } = await supabase
+    .from("tickets")
+    .select("*")
+    .eq("user_id", user.id);
+
+  console.log(tickets, error);
+
+  if (error || !tickets) return;
+
+  const group = tickets.reduce((acc, ticket) => {
+    const category = ticket.category;
+
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+
+    acc[category].push(ticket);
+
+    return acc;
+  }, {});
+
+  console.log(group);
+
+  return { tickets, group };
+}
