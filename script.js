@@ -443,7 +443,7 @@ async function readTickets() {
     ticketArea.innerHTML += /* html */ `
     <div class="ticketCard">
       <div class="ticketIcon">
-        <i class="fa-solid fa-${minicategory} fa-2xl"></i>
+        <i class="fa-solid fa-${minicategory} fa-4x" style="color: #444444;"></i>
       </div>
        <div class= "ticketInfo">
          <div class="ticketTitle">${title}</div>
