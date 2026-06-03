@@ -433,6 +433,11 @@ add.addEventListener("submit", async (event) => {
 });
 
 async function readTickets() {
+  btnAllContent.innerHTML = "";
+  btn1Content.innerHTML = "";
+  btn2Content.innerHTML = "";
+  btn3Content.innerHTML = "";
+  btn4Content.innerHTML = "";
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -459,6 +464,84 @@ async function readTickets() {
   }, {});
 
   console.log(group);
+  function ticketCard(ticketArea, category, minicategory, title, date, memo) {
+    ticketArea.innerHTML += /* html */ `
+    <div class="ticketCard">
+      <div class="ticketIcon">
+        <i class="fa-solid fa-${minicategory} fa-2xl"></i>
+      </div>
+       <div class= "ticketInfo">
+         <div class="ticketTitle">${title}</div>
+         <div class="ticketDate">${date}</div>
+         <div class="ticketMemo">${memo}</div>
+       </div>
+    </div>
+        
+    `;
+  }
 
-  return { tickets, group };
+  group.all = tickets;
+
+  group.all.forEach((ticket) => {
+    console.log(ticket);
+    let ticketArea = btnAllContent;
+    ticketCard(
+      ticketArea,
+      ticket.category,
+      ticket.minicategory,
+      ticket.title,
+      ticket.date,
+      ticket.memo,
+    );
+  });
+
+  (group.sport || []).forEach((ticket) => {
+    console.log(ticket);
+    let ticketArea = btn1Content;
+    ticketCard(
+      ticketArea,
+      ticket.category,
+      ticket.minicategory,
+      ticket.title,
+      ticket.date,
+      ticket.memo,
+    );
+  });
+
+  (group.classic || []).forEach((ticket) => {
+    console.log(ticket);
+    let ticketArea = btn2Content;
+    ticketCard(
+      ticketArea,
+      ticket.category,
+      ticket.minicategory,
+      ticket.title,
+      ticket.date,
+      ticket.memo,
+    );
+  });
+  (group.concert || []).forEach((ticket) => {
+    console.log(ticket);
+    let ticketArea = btn3Content;
+    ticketCard(
+      ticketArea,
+      ticket.category,
+      ticket.minicategory,
+      ticket.title,
+      ticket.date,
+      ticket.memo,
+    );
+  });
+  (group.travel || []).forEach((ticket) => {
+    console.log(ticket);
+    let ticketArea = btn4Content;
+    ticketCard(
+      ticketArea,
+      ticket.category,
+      ticket.minicategory,
+      ticket.title,
+      ticket.date,
+      ticket.memo,
+    );
+  });
 }
