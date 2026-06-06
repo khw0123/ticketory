@@ -1,7 +1,8 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-import { supabase } from "./supabase.js";
-import { signUp, signIn, signOut, getCurrentUser } from "./auth.js";
-
+const supabase = createClient(
+  "https://gxfhplrwkalsiirczdea.supabase.co",
+  "sb_publishable_XaigQ9yBb4pljdIWysP2nQ_vB3-NK2X",
+);
 const { data, error } = await supabase.auth.getUser();
 
 console.log(data);
@@ -201,31 +202,54 @@ function viewerShow(page) {
   }
 }
 
-let signUpForm = document.getElementById("signUp");
-signUpForm.addEventListener("submit", async (event) => {
+let signUp = document.getElementById("signUp");
+signUp.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  console.log("submit");
 
   const email = document.getElementById("signUpId").value;
   const password = document.getElementById("signUpPw").value;
   const nickname = document.getElementById("signUpNick").value;
+  console.log(nickname);
 
-  const { data, error } = await signUp(email, password, nickname);
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        nickname,
+      },
+    },
+  });
 
-  if (!error) {
-    alert("가입 되었습니다.");
-    render(0);
+  if (error == null) {
+    console.log("clear");
+    const { data, error } = await signUp(email, password, nickname);
+
+    if (!error) {
+      alert("가입 되었습니다.");
+      render(0);
+    } else {
+      alert("retry");
+    }
+
+    console.log(data, error);
   }
 });
 
-let signInForm = document.getElementById("signIn");
-signInForm.addEventListener("submit", async (event) => {
+let signIn = document.getElementById("signIn");
+signIn.addEventListener("submit", async (event) => {
   event.preventDefault();
   console.log("submit");
 
   const email = document.getElementById("signInId").value;
   const password = document.getElementById("signInPw").value;
 
-  const { data, error } = await signIn(email, password);
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
   if (!error) {
     alert("로그인 되었습니다.");
@@ -416,7 +440,10 @@ async function readTickets() {
   btn2Content.innerHTML = "";
   btn3Content.innerHTML = "";
   btn4Content.innerHTML = "";
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const { data: tickets, error } = await supabase
     .from("tickets")
     .select("*")
