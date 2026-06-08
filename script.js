@@ -25,6 +25,7 @@ let btn4Content = document.querySelector(".btn4Content");
 let toLoginPage = document.querySelector(".loginBtn");
 let toRegisterPage = document.querySelector(".registerBtn");
 let toAddPage = document.querySelector(".addBtn");
+let logoutBtn = document.querySelector('.signoutIcon')
 
 let startPage = document.querySelector(".startPage");
 let registerPage = document.querySelector(".registerPage");
@@ -44,7 +45,7 @@ function render(page) {
   loginPage.classList.add("none");
   mainPage.classList.add("none");
   addPage.classList.add("none");
-  readTickets();
+
   switch (page) {
     case "startPage":
       startPage.classList.remove("none");
@@ -61,6 +62,8 @@ function render(page) {
     case "mainPage":
       mainPage.classList.remove("none");
       console.log("clearm");
+      readTickets()
+      readNick()
       break;
     case "addPage":
       addPage.classList.remove("none");
@@ -69,17 +72,6 @@ function render(page) {
   }
 }
 
-const {
-  data: { session },
-} = await supabase.auth.getSession();
-
-if (session) {
-  console.log("로그인 상태");
-  render(3);
-} else {
-  console.log("로그인 필요");
-  render(0);
-}
 
 toLoginPage.addEventListener("click", () => {
   render(2);
@@ -116,11 +108,13 @@ function btnClick(num, content) {
   // console.log(icon);
 }
 function btnHover(name, num) {
+  name.innerHTML = ''
   name.innerHTML = /* html */ `
      <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>
      <h1 class="btnText">${titlesKr[num - 1]}</h1>`;
 }
 function btnHoverOut(name, num) {
+  name.innerHTML = ''
   name.innerHTML = /* html */ `
      <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
 }
@@ -229,6 +223,7 @@ signUp.addEventListener("submit", async (event) => {
 
     if (!error) {
       alert("가입 되었습니다.");
+      signUp.reset()
       render(0);
     } else {
       alert("retry");
@@ -253,7 +248,7 @@ signIn.addEventListener("submit", async (event) => {
 
   if (!error) {
     alert("로그인 되었습니다.");
-    render(3);
+    signIn.reset()
   } else {
     alert("retry");
   }
@@ -435,6 +430,7 @@ add.addEventListener("submit", async (event) => {
 });
 
 async function readTickets() {
+  console.log("readTickets 실행");
   btnAllContent.innerHTML = "";
   btn1Content.innerHTML = "";
   btn2Content.innerHTML = "";
@@ -484,7 +480,7 @@ async function readTickets() {
 
   group.all = tickets;
 
-  group.all.forEach((ticket) => {
+  (group.all || []).forEach((ticket) => {
     console.log(ticket);
     let ticketArea = btnAllContent;
     ticketCard(
@@ -547,3 +543,34 @@ async function readTickets() {
     );
   });
 }
+
+logoutBtn.addEventListener("click", async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.log(error);
+    alert("로그아웃 실패");
+  } else {
+    alert("로그아웃 되었습니다.");
+  }
+});
+
+let nickShow = document.querySelector('.nicknameShow')
+
+
+async function readNick () {
+  const {
+  data: { user },
+} = await supabase.auth.getUser();
+
+console.log(user)
+
+
+nickShow.innerHTML = /* html */`
+<div class="nickFlex">
+  <i class="fa-solid fa-circle-user fa-2xl"></i>
+  <h1 class="nickNow">${user.user_metadata.nickname}</h1> 
+</div>
+`
+}
+readNick()

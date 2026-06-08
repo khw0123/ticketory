@@ -53,6 +53,31 @@ body {
   right: 360px;
 }
 
+.userBar {
+  width: 200px;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 30px;
+  left: 380px;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #f3efec;
+}
+.nickNow {
+  font-size: 20px;
+}
+.nickFlex {
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 .header {
   width: 100%;
   position: relative;
@@ -170,9 +195,10 @@ body {
 }
 
 .formPage {
+  background-color: #f3efec;
   width: 400px;
   height: 400px;
-  border: 1px solid;
+  /* border: 1px solid; */
   position: relative;
   left: 0;
   right: 0;
@@ -346,3 +372,4 @@ body {
   justify-content: space-around;
   gap: 20px;
 }
+
