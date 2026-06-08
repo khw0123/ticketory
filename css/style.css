@@ -388,8 +388,12 @@ body {
     margin: 50px 100px;
   }
 
-  .wrap {
+  .mainPage.wrap {
     width: 70%;
+  }
+
+  .formPage {
+    top: 120px;
   }
 
   .navBar {
