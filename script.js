@@ -25,7 +25,7 @@ let btn4Content = document.querySelector(".btn4Content");
 let toLoginPage = document.querySelector(".loginBtn");
 let toRegisterPage = document.querySelector(".registerBtn");
 let toAddPage = document.querySelector(".addBtn");
-let logoutBtn = document.querySelector('.signoutIcon')
+let logoutBtn = document.querySelector(".signoutIcon");
 
 let startPage = document.querySelector(".startPage");
 let registerPage = document.querySelector(".registerPage");
@@ -50,28 +50,32 @@ function render(page) {
     case "startPage":
       startPage.classList.remove("none");
       console.log("clears");
+      document.body.style.backgroundColor = "#F5F4F2";
       break;
     case "registerPage":
       registerPage.classList.remove("none");
       console.log("clearr");
+      document.body.style.backgroundColor = "#F5F4F2";
       break;
     case "loginPage":
       loginPage.classList.remove("none");
       console.log("clearl");
+      document.body.style.backgroundColor = "#F5F4F2";
       break;
     case "mainPage":
       mainPage.classList.remove("none");
       console.log("clearm");
-      readTickets()
-      readNick()
+      document.body.style.backgroundColor = "#FFFFFF";
+      readTickets();
+      readNick();
       break;
     case "addPage":
       addPage.classList.remove("none");
+      document.body.style.backgroundColor = "#FFFFFF";
       console.log("cleara");
       break;
   }
 }
-
 
 toLoginPage.addEventListener("click", () => {
   render(2);
@@ -108,13 +112,13 @@ function btnClick(num, content) {
   // console.log(icon);
 }
 function btnHover(name, num) {
-  name.innerHTML = ''
+  name.innerHTML = "";
   name.innerHTML = /* html */ `
      <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>
      <h1 class="btnText">${titlesKr[num - 1]}</h1>`;
 }
 function btnHoverOut(name, num) {
-  name.innerHTML = ''
+  name.innerHTML = "";
   name.innerHTML = /* html */ `
      <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
 }
@@ -223,7 +227,7 @@ signUp.addEventListener("submit", async (event) => {
 
     if (!error) {
       alert("가입 되었습니다.");
-      signUp.reset()
+      signUp.reset();
       render(0);
     } else {
       alert("retry");
@@ -248,7 +252,7 @@ signIn.addEventListener("submit", async (event) => {
 
   if (!error) {
     alert("로그인 되었습니다.");
-    signIn.reset()
+    signIn.reset();
   } else {
     alert("retry");
   }
@@ -555,22 +559,20 @@ logoutBtn.addEventListener("click", async () => {
   }
 });
 
-let nickShow = document.querySelector('.nicknameShow')
+let nickShow = document.querySelector(".nicknameShow");
 
-
-async function readNick () {
+async function readNick() {
   const {
-  data: { user },
-} = await supabase.auth.getUser();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-console.log(user)
+  console.log(user);
 
-
-nickShow.innerHTML = /* html */`
+  nickShow.innerHTML = /* html */ `
 <div class="nickFlex">
   <i class="fa-solid fa-circle-user fa-2xl"></i>
   <h1 class="nickNow">${user.user_metadata.nickname}</h1> 
 </div>
-`
+`;
 }
-readNick()
+readNick();
