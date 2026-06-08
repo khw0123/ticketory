@@ -68,9 +68,11 @@ body {
   padding-right: 20px;
   background-color: #f3efec;
 }
+
 .nickNow {
   font-size: 20px;
 }
+
 .nickFlex {
   width: 90px;
   display: flex;
@@ -86,6 +88,8 @@ body {
   right: 0;
   margin: 50px auto;
   height: 200px;
+  display: flex;
+  justify-content: space-between;
   /* border: 1px solid; */
 }
 
@@ -275,10 +279,10 @@ body {
 }
 
 .add {
-  align-items: center;
+  /* align-items: center;
   position: absolute;
   right: 50px;
-  bottom: 30px;
+  bottom: 30px; */
 }
 
 #add {
@@ -374,3 +378,31 @@ body {
   gap: 20px;
 }
 
+@media (max-width: 1600px) {
+  .header {
+    height: 80px;
+    align-items: center;
+  }
+
+  .title-area {
+    margin: 50px 100px;
+  }
+
+  .wrap {
+    width: 70%;
+  }
+
+  .navBar {
+    right: 20px;
+  }
+
+  .userBar {
+    left: 20px;
+  }
+
+  .viewerContent {
+    grid-template-columns: repeat(2, 1fr);
+    height: 400px;
+
+  }
+}
