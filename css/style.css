@@ -61,7 +61,7 @@ body {
 }
 
 .userBar {
-  width: 200px;
+  width: 220px;
   height: 70px;
   display: flex;
   justify-content: space-between;
@@ -77,6 +77,7 @@ body {
 
 .nickNow {
   font-size: 20px;
+  margin-left: 10px;
 }
 
 .nickFlex {
@@ -218,6 +219,7 @@ body {
   text-align: center;
   padding-top: 50px;
   border-radius: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }
 
 .registerPage {
@@ -276,6 +278,15 @@ body {
   border-radius: 10px;
   text-align: center;
   align-content: center;
+}
+
+.toStartBtn {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .loginBtn {

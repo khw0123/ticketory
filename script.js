@@ -200,6 +200,17 @@ function viewerShow(page) {
   }
 }
 
+let toStartBtn1 = document.querySelector(".toStartBtn1");
+let toStartBtn2 = document.querySelector(".toStartBtn2");
+toStartBtn1.addEventListener("click", () => {
+  render(0);
+  signUp.reset();
+});
+toStartBtn2.addEventListener("click", () => {
+  render(0);
+  signIn.reset();
+});
+
 let signUp = document.getElementById("signUp");
 signUp.addEventListener("submit", async (event) => {
   event.preventDefault();
