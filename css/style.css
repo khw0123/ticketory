@@ -129,21 +129,20 @@ body {
   margin-top: 40px;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  justify-items: center;
+  grid-template-columns: repeat(2, 350px);
+  justify-content: center;
   scrollbar-width: thin;
   scrollbar-color: #888 #f3efec;
-
+  gap: 20px;
 }
 
 .ticketCard {
   background-color: white;
   box-sizing: border-box;
-  width: 80%;
+  width: 100%;
   height: 120px;
   border: 1px solid #E5E7EB;
-  margin: 20px auto;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
