@@ -1,10 +1,11 @@
 body {
+  background-color: #ffffff;
+}
+body * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #ffffff;
 }
-
 
 .wrap {
   width: 60%;
@@ -87,7 +88,6 @@ body {
   align-items: center;
 }
 
-
 .header {
   width: 100%;
   position: relative;
@@ -116,9 +116,9 @@ body {
 .icon {
   width: 60px;
 }
-
-
-
+.viewer {
+  padding: 20px;
+}
 .viewerContent {
   box-sizing: border-box;
   border-radius: 20px;
@@ -135,31 +135,29 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #888 #f3efec;
   gap: 20px;
-
-  /* align-content: center; */
-  padding-top: 20px;
+  padding: 20px;
 }
 
 .ticketCard {
-  flex-basis: 45%;
+  /* flex-basis: 50%; */
   background-color: white;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   width: calc((100% - 20px) / 2);
   height: 120px;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 10px;
   border-radius: 20px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .ticketCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, .08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 .ticketIcon {
@@ -223,7 +221,7 @@ body {
   text-align: center;
   padding-top: 50px;
   border-radius: 30px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .registerPage {
@@ -267,7 +265,7 @@ body {
   margin-top: 80px;
 }
 
-.btnGroup>input {
+.btnGroup > input {
   padding: 10px 30px;
   background: none;
   border: 1px solid;
@@ -309,8 +307,6 @@ body {
   width: 30px;
 }
 
-
-
 #add {
   display: flex;
   justify-content: center;
@@ -339,8 +335,6 @@ body {
   background-color: seagreen;
 }
 
-
-
 .addBtn {
   background: #222;
   color: white;
@@ -368,7 +362,6 @@ body {
   text-align: center;
   align-content: center;
 }
-
 
 .title-area {
   width: 300px;
@@ -433,6 +426,5 @@ body {
   .viewerContent {
     grid-template-columns: repeat(2, 1fr);
     height: 400px;
-
   }
 }

@@ -99,6 +99,12 @@ let iconTitles = [
   "bars",
 ];
 
+let btnAllName = document.querySelector(".btnAllName");
+let btn1Name = document.querySelector(".btn1Name");
+let btn2Name = document.querySelector(".btn2Name");
+let btn3Name = document.querySelector(".btn3Name");
+let btn4Name = document.querySelector(".btn4Name");
+
 function btnClick(num, content) {
   if (num === 5) {
     viewer.classList.remove("btn1", "btn2", "btn3", "btn4");
@@ -114,13 +120,18 @@ function btnClick(num, content) {
 function btnHover(name, num) {
   name.innerHTML = "";
   name.innerHTML = /* html */ `
-     <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>
-     <h1 class="btnText">${titlesKr[num - 1]}</h1>`;
+     <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
 }
 function btnHoverOut(name, num) {
   name.innerHTML = "";
   name.innerHTML = /* html */ `
      <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
+}
+function removeNone(h1Name) {
+  h1Name.classList.remove("none");
+}
+function addNone(h1Name) {
+  h1Name.classList.add("none");
 }
 
 // 접속 하자마자
@@ -154,12 +165,23 @@ btn2.addEventListener("mouseenter", () => btnHover(btn2, 2));
 btn3.addEventListener("mouseenter", () => btnHover(btn3, 3));
 btn4.addEventListener("mouseenter", () => btnHover(btn4, 4));
 
+btnAll.addEventListener("mouseenter", () => removeNone(btnAllName));
+btn1.addEventListener("mouseenter", () => removeNone(btn1Name));
+btn2.addEventListener("mouseenter", () => removeNone(btn2Name));
+btn3.addEventListener("mouseenter", () => removeNone(btn3Name));
+btn4.addEventListener("mouseenter", () => removeNone(btn4Name));
+
 btnAll.addEventListener("mouseleave", () => btnHoverOut(btnAll, 5));
 btn1.addEventListener("mouseleave", () => btnHoverOut(btn1, 1));
 btn2.addEventListener("mouseleave", () => btnHoverOut(btn2, 2));
 btn3.addEventListener("mouseleave", () => btnHoverOut(btn3, 3));
 btn4.addEventListener("mouseleave", () => btnHoverOut(btn4, 4));
 
+btnAll.addEventListener("mouseleave", () => addNone(btnAllName));
+btn1.addEventListener("mouseleave", () => addNone(btn1Name));
+btn2.addEventListener("mouseleave", () => addNone(btn2Name));
+btn3.addEventListener("mouseleave", () => addNone(btn3Name));
+btn4.addEventListener("mouseleave", () => addNone(btn4Name));
 function viewerShow(page) {
   switch (page) {
     case "btnAll":
