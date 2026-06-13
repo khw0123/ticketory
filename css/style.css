@@ -1,6 +1,7 @@
 body {
   background-color: #ffffff;
 }
+
 body * {
   margin: 0;
   padding: 0;
@@ -117,9 +118,11 @@ body * {
 .icon {
   width: 60px;
 }
+
 .viewer {
   padding: 20px;
 }
+
 .viewerContent {
   box-sizing: border-box;
   border-radius: 20px;
@@ -266,7 +269,7 @@ body * {
   margin-top: 80px;
 }
 
-.btnGroup > input {
+.btnGroup>input {
   padding: 10px 30px;
   background: none;
   border: 1px solid;
@@ -400,6 +403,11 @@ body * {
   justify-content: space-around;
   gap: 20px;
 }
+
+.btnName {
+  display: none;
+}
+
 
 @media (max-width: 1600px) {
   .header {
