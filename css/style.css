@@ -8,6 +8,22 @@ body * {
   box-sizing: border-box;
 }
 
+.bodyForm {
+  background:
+    radial-gradient(circle at 30% 20%,
+      #F9F5FA 0%,
+      #ECE7F8 35%,
+      rgba(236, 231, 248, 0) 70%),
+    linear-gradient(135deg,
+      #EEE9F7 0%,
+      #E1E7FB 60%,
+      #D7E6FC 100%);
+}
+
+.bodyMain {
+  background: #f7fafc;
+}
+
 .wrap {
   width: 60%;
   position: relative;

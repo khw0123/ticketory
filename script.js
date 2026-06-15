@@ -50,28 +50,33 @@ function render(page) {
     case "startPage":
       startPage.classList.remove("none");
       console.log("clears");
-      document.body.style.backgroundColor = "#F5F4F2";
+      document.body.classList.remove(".bodyMain");
+      document.body.classList.add("bodyForm");
       break;
     case "registerPage":
       registerPage.classList.remove("none");
       console.log("clearr");
-      document.body.style.backgroundColor = "#F5F4F2";
+      document.body.classList.remove(".bodyMain");
+      document.body.classList.add("bodyForm");
       break;
     case "loginPage":
       loginPage.classList.remove("none");
       console.log("clearl");
-      document.body.style.backgroundColor = "#F5F4F2";
+      document.body.classList.remove(".bodyMain");
+      document.body.classList.add("bodyForm");
       break;
     case "mainPage":
       mainPage.classList.remove("none");
       console.log("clearm");
-      document.body.style.backgroundColor = "#FFFFFF";
+      document.body.classList.remove("bodyForm");
+      document.body.classList.add(".bodyMain");
       readTickets();
       readNick();
       break;
     case "addPage":
       addPage.classList.remove("none");
-      document.body.style.backgroundColor = "#FFFFFF";
+      document.body.classList.remove(".bodyMain");
+      document.body.classList.add("bodyForm");
       console.log("cleara");
       break;
   }
