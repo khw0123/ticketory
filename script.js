@@ -104,7 +104,7 @@ let btn1Name = document.querySelector(".btn1Name");
 let btn2Name = document.querySelector(".btn2Name");
 let btn3Name = document.querySelector(".btn3Name");
 let btn4Name = document.querySelector(".btn4Name");
-let btnName = [btnAllName, btn1Name, btn2Name, btn3Name, btn4Name];
+let btnName = [btn1Name, btn2Name, btn3Name, btn4Name, btnAllName];
 
 function btnClick(num, content) {
   if (num === 5) {
@@ -119,16 +119,12 @@ function btnClick(num, content) {
   // console.log(icon);
 }
 function btnHover(name, num) {
-  name.innerHTML = "";
-  name.innerHTML = /* html */ `
-     <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
-
-  className.classList;
+  console.log(btnName[num - 1]);
+  btnName[num - 1].classList.remove("none");
 }
 function btnHoverOut(name, num) {
-  name.innerHTML = "";
-  name.innerHTML = /* html */ `
-     <i class="fa-solid fa-${iconTitles[num - 1]} fa-2xl" style="color: rgb(255, 255, 255);"></i>`;
+  console.log(btnName[num - 1]);
+  btnName[num - 1].classList.add("none");
 }
 function removeNone(h1Name) {
   h1Name.classList.remove("none");

@@ -33,6 +33,13 @@ body * {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+}
+
+.btnName {
+  display: inline-block;
+  font-size: 20px;
+  color: white;
 }
 
 .btnText {
@@ -404,9 +411,6 @@ body * {
   gap: 20px;
 }
 
-.btnName {
-  display: none;
-}
 
 
 @media (max-width: 1600px) {
