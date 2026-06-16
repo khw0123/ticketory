@@ -104,44 +104,61 @@
     </div>
 
     <!-- add page -->
-     <div class="wrap addPage none">
+     <div class="wrap addPage formPage none">
       <div class="addPlan">
-        <div class="title-area">
+        <div class="textGroup">
           <h1>예매 내역(티켓) 추가</h1>
+          <p class="formDescription">계정을 만들어 이용해 보세요.</p>
         </div>
         <form id="add">
-          <div class="selectCategory"> 
-            <select name="category" id="addCategory" class="formInput" required>
-              <option selected disabled value="">카테고리</option>
-              <option value="sport">스포츠</option>
-              <option value="classic">클래식</option>
-              <option value="concert">콘서트</option>
-              <option value="travel">교통</option>
-            </select>
-          </div>
-          <div class="ndFlex">
+          <div class="inputFlex">
 
-            <div class="addIconArea">
-              <div class="selectIconBtn"><i class="fa-regular fa-square-plus fa-2xl"></i></div>
-              <div id="addIcon" class="none"></div>
+            <div class="inputFlexItem">
+              <div class="inputBox">
+                <div class="selectCategory"> 
+                  <select name="category" id="addCategory" class="formInput" required>
+                    <option selected disabled value="">카테고리</option>
+                    <option value="sport">스포츠</option>
+                    <option value="classic">클래식</option>
+                    <option value="concert">콘서트</option>
+                    <option value="travel">교통</option>
+                  </select>
+                </div>
+              </div>
             </div>
 
-            <div class="rdFlex">
-              <div class="ticketName">
-                <input type="text" id="ticketName" placeholder="티켓 이름" class="formInput wideInput" required>
+            <div class="inputFlexItem">
+              <div class="ndFlex">
+                <div class="selectIcon">
+                  <div class="selectIconBtn">
+                    <i class="fa-regular fa-square-plus fa-2xl"></i>
+                  </div>
+                  <div id="addIcon" class="none"></div>
+                </div>
+                  
+
+                <div class="rdFlex">
+                  <div class="ticketName inputBox">
+                    <input type="text" id="ticketName" placeholder="티켓 이름" class="formInput" required>
+                  </div>
+                  <div class="ticketDate inputBox">
+                    <input type="text" id="datepicker" class="formInput" required placeholder="날짜 선택">
+                  </div>
+                </div>
               </div>
-              <div class="ticketDate">
-                <input type="text" id="datepicker" class="formInput wideInput" required placeholder="날짜 선택">
-              </div>
-              <div class="textarea">
-                <textarea id="textarea" rows="10" class="formInput" style="width: 500px; height: 140px; resize:none;" required placeholder="간단한 티켓 설명"></textarea>
-              </div>
+              <div class="textarea inputBox">
+                    <textarea id="textarea" rows="10" class="formInput" style="width: 500px; height: 140px; resize:none;" required placeholder="간단한 티켓 설명"></textarea>
+                </div>
             </div>
+
+            <div class="inputFlexItem">
+              <div class="btnGroup">
+                <input type="reset" value="초기화" id="iconReset">
+                <input type="submit" value="추가하기" >
+              </div> 
+            </div>
+            
           </div>
-          <div class="btnGroup">
-            <input type="reset" value="초기화" id="iconReset">
-            <input type="submit" value="추가하기" >
-          </div> 
         </form>
       </div>
      </div>
@@ -152,24 +169,50 @@
       <div class="toStartBtn1 toStartBtn">
         <i class="fa-solid fa-arrow-left fa-lg" style="color: #222;"></i>
       </div>
-      <div class="register">
-        <h1>회원가입</h1>
+      <div class="register formWrap">
+        <div class="textGroup">
+          <h1>회원가입</h1>
+          <p class="formDescription">계정을 만들어 이용해 보세요.</p>
+        </div>
         <form id="signUp">
           <div class="inputFlex">
             <div class="inputFlexItem">
-              <h1 class="formLabel">Email</h1>
-              <input type="email" id="signUpId" class="formInput" required>
+              <div class="inputBox">
+                <div class="inputBoxItem1">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="inputBoxItem2">
+                  <input type="email" id="signUpId" class="formInput" required placeholder="이메일">
+                </div>
+              </div>
             </div>
             <div class="inputFlexItem">
-              <h1 class="formLabel">nickname</h1>
-              <input type="text" id="signUpNick" class="formInput" required>
+              <div class="inputBox">
+                <div class="inputBoxItem1">
+                  <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="inputBoxItem2">
+                  <input type="text" id="signUpNick" class="formInput" required placeholder="닉네임">
+                </div>
+              </div>
             </div>
             <div class="inputFlexItem">
-              <h1 class="formLabel">Password</h1>
-              <input type="password" id="signUpPw" class="formInput" required>
+              <div class="inputBox">
+                <div class="inputBoxItem1">
+                  <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="inputBoxItem2">
+                  <input type="password" id="signUpPw" class="formInput" required placeholder="비밀번호">
+                </div>
+              </div>
+            </div>
+            <div class="inputFlexItem inputBox submit">
+              <input type="submit" class=" formInput" id="upSubmit" value="가입하기">
             </div>
             <div class="inputFlexItem">
-              <input type="submit" class="submitBtn formInput" id="upSubmit" value="가입하기">
+              <div class="isAleady">
+                <p>이미 계정이 있으신가요?? <span class="isAleadyOBtn">로그인</span></p>
+              </div>
             </div>
         </form>
         </div>
@@ -181,20 +224,40 @@
        <div class="toStartBtn2 toStartBtn">
          <i class="fa-solid fa-arrow-left fa-lg" style="color: #222;"></i>
        </div>
-      <div class="login">
-        <h1>로그인</h1>
+      <div class="login formWrap">
+        <div class="textGroup">
+          <h1>로그인</h1>
+          <p class="formDescription">환영합니다! 다시 만나서 반가워요.</p>
+        </div>
         <form id="signIn">
           <div class="inputFlex">
             <div class="inputFlexItem">
-              <h1 class="formLabel">Email</h1>
-              <input type="email" id="signInId" class="formInput" required>
+              <div class="inputBox">
+                <div class="inputBoxItem1">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="inputBoxItem2">
+                  <input type="email" id="signInId" class="formInput" required placeholder="이메일">
+                </div>
+              </div>
             </div>
             <div class="inputFlexItem">
-              <h1 class="formLabel">Password</h1>
-              <input type="password" id="signInPw" class="formInput" required>
+              <div class="inputBox">
+                <div class="inputBoxItem1">
+                  <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="inputBoxItem2">
+                  <input type="password" id="signInPw" class="formInput" required placeholder="비밀번호">
+                </div>
+              </div>
+            </div>
+            <div class="inputFlexItem inputBox submit">
+              <input type="submit" class=" formInput" id="inSubmit" value="로그인">
             </div>
             <div class="inputFlexItem">
-              <input type="submit" class="submitBtn formInput" id="upSubmit" value="LOGIN">
+              <div class="isAleady">
+                <p>계정이 없으신가요? <span class="isAleadyXBtn">회원가입</span></p>
+              </div>
             </div>
         </form>
       </div>

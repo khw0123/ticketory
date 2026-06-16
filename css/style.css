@@ -87,6 +87,49 @@ body * {
   box-sizing: border-box;
 }
 
+h1,
+p,
+div {
+  user-select: none;
+}
+
+input {
+  background: none;
+}
+
+.inputBox input {
+  border: none;
+}
+
+
+input:focus,
+input:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.inputBox {
+  width: 100%;
+  border: 2px solid var(--light-gray);
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+#signIn .inputFlex {
+  gap: 20px;
+}
+
+#signUp .inputFlex {
+  gap: 15px;
+}
+
+.inputBoxItem2 {
+  flex-grow: 1;
+}
+
 .bodyForm {
   background:
     radial-gradient(circle at 30% 20%,
@@ -335,11 +378,33 @@ body * {
   margin: auto auto;
   border-radius: 30px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.formPage.startPage {
+  align-items: center;
   align-content: center;
   text-align: center;
+}
+
+.addPage.formPage {
+  width: 600px;
+  height: 600px;
+}
+
+.formDescription {
+  color: var(--info-gray);
+}
+
+.textGroup {
+  text-align: left;
+
+  padding-left: 50px;
+  line-height: 1.6;
+}
+
+.register .textGroup {
+  margin-bottom: 20px;
+}
+
+.login .textGroup {
+  margin-bottom: 50px;
 }
 
 .registerPage {
@@ -347,16 +412,40 @@ body * {
 }
 
 .inputFlex {
+  width: 76%;
   display: flex;
+  margin: auto;
+  justify-content: center;
+  align-content: center;
   flex-direction: column;
   gap: 10px;
 }
 
+.inputFlexItem.submit {
+  background: var(--main-color);
+}
+
+input[type='submit'] {
+  color: white;
+}
+
+.isAleady p {
+  color: var(--info-gray);
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.isAleady span {
+  color: var(--main-color);
+}
+
 .formInput {
-  width: 300px;
+  /* flex-grow: 1; */
+  width: 100%;
   height: 40px;
-  border-radius: 20px;
-  padding-left: 15px;
+  /* padding-left: 15px; */
+  margin-left: 10px;
 }
 
 .wideInput {
@@ -372,12 +461,7 @@ body * {
   margin: 5px auto;
 }
 
-.submitBtn {
-  width: 320px;
-  border-radius: 10px;
-  margin-top: 20px;
-  background-color: white;
-}
+
 
 .btn-group {
   margin-top: 80px;
@@ -430,7 +514,7 @@ body * {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 800px;
+  /* width: 800px; */
   position: relative;
   left: 0;
   right: 0;
@@ -438,6 +522,9 @@ body * {
 }
 
 #addIcon {
+  z-index: 6;
+  position: absolute;
+  bottom: -50px;
   width: 200px;
   height: 40px;
   display: flex;
@@ -476,12 +563,16 @@ body * {
 }
 
 .selectIconBtn {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   border: 1px solid;
-  border-radius: 30px;
+  border-radius: 15px;
   text-align: center;
   align-content: center;
+}
+
+.selectIcon {
+  position: relative;
 }
 
 .title-area {
@@ -508,14 +599,15 @@ body * {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin: 20px auto;
+  margin: 0 auto;
+  align-items: center;
 }
 
 .rdFlex {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: center;
+
 }
 
 

@@ -16,6 +16,9 @@ let btn3 = document.querySelector(".btn3");
 let btn4 = document.querySelector(".btn4");
 let btn = document.querySelectorAll(".btn");
 
+let isAleadyXbtn = document.querySelector(".isAleadyXbtn");
+let isAleadyObtn = document.querySelector(".isAleadyObtn");
+
 let btnAllContent = document.querySelector(".btnAllContent");
 let btn1Content = document.querySelector(".btn1Content");
 let btn2Content = document.querySelector(".btn2Content");
@@ -90,6 +93,13 @@ toRegisterPage.addEventListener("click", () => {
 });
 toAddPage.addEventListener("click", () => {
   render(4);
+});
+
+isAleadyXbtn.addEventListener("click", () => {
+  render(1);
+});
+isAleadyObtn.addEventListener("click", () => {
+  render(2);
 });
 
 let title = document.querySelector(".text");
