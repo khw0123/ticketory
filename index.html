@@ -76,7 +76,7 @@
           <div class="nicknameShow"></div>
         </div>
         <div class="signoutIcon">
-          <i class="fa-solid fa-arrow-right-from-bracket fa-2xl" style="color: #444444;"></i>
+          <i class="fa-solid fa-arrow-right-from-bracket fa-2xl" style="color: white;"></i>
         </div>
       </div>
       <div class="navBar">
@@ -105,6 +105,9 @@
 
     <!-- add page -->
      <div class="wrap addPage formPage none">
+      <div class="toStartBtn3 toStartBtn">
+        <i class="fa-solid fa-arrow-left fa-lg" style="color: #222;"></i>
+      </div>
       <div class="addPlan">
         <div class="textGroup">
           <h1>예매 내역(티켓) 추가</h1>
@@ -136,13 +139,12 @@
                   <div id="addIcon" class="none"></div>
                 </div>
                   
-
                 <div class="rdFlex">
                   <div class="ticketName inputBox">
                     <input type="text" id="ticketName" placeholder="티켓 이름" class="formInput" required>
                   </div>
                   <div class="ticketDate inputBox">
-                    <input type="text" id="datepicker" class="formInput" required placeholder="날짜 선택">
+                    <input type="text" id="datepicker" class="formInput" required placeholder="날짜 선택" autocomplete="off">
                   </div>
                 </div>
               </div>
@@ -154,7 +156,7 @@
             <div class="inputFlexItem">
               <div class="btnGroup">
                 <input type="reset" value="초기화" id="iconReset">
-                <input type="submit" value="추가하기" >
+                <input type="submit" class="addSubmit" value="추가하기" >
               </div> 
             </div>
             

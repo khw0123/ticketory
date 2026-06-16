@@ -227,6 +227,7 @@ function viewerShow(page) {
 
 let toStartBtn1 = document.querySelector(".toStartBtn1");
 let toStartBtn2 = document.querySelector(".toStartBtn2");
+let toStartBtn3 = document.querySelector(".toStartBtn3");
 toStartBtn1.addEventListener("click", () => {
   render(0);
   signUp.reset();
@@ -234,6 +235,10 @@ toStartBtn1.addEventListener("click", () => {
 toStartBtn2.addEventListener("click", () => {
   render(0);
   signIn.reset();
+});
+toStartBtn3.addEventListener("click", () => {
+  render(3);
+  add.reset();
 });
 
 let signUp = document.getElementById("signUp");
