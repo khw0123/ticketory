@@ -329,12 +329,13 @@ textarea::placeholder {
   scrollbar-color: #888 #f3efec;
   gap: 20px;
   padding: 20px;
+  align-content: flex-start;
 }
 
 .ticketCard {
-  /* flex-basis: 50%; */
+
   background-color: white;
-  /* box-sizing: border-box; */
+
   width: calc((100% - 20px) / 2);
   height: 120px;
   border: 1px solid #e5e7eb;

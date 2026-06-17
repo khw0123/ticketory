@@ -354,6 +354,7 @@ window.iconClicked = function (iconName) {
   IconActive.innerHTML = /* html */ `
     <i class="fa-solid fa-${iconName} fa-2xl activeIcon" style="color: white;"></i>
   `;
+  CategoryIcon.classList.add("none");
   if (iconName === "default") {
     IconActive.innerHTML = /* html */ `
       <i class="fa-regular fa-square-plus fa-2xl"></i>
