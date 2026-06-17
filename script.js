@@ -475,6 +475,14 @@ add.addEventListener("submit", async (event) => {
   }
 });
 
+async function deleteTicket(id) {
+  const { error } = await supabase.from("tickets").delete().eq("id", id);
+  console.log("delete");
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function readTickets() {
   console.log("readTickets 실행");
   btnAllContent.innerHTML = "";
@@ -508,9 +516,17 @@ async function readTickets() {
   }, {});
 
   console.log(group);
-  function ticketCard(ticketArea, category, minicategory, title, date, memo) {
+  function ticketCard(
+    ticketArea,
+    category,
+    minicategory,
+    title,
+    date,
+    memo,
+    id,
+  ) {
     ticketArea.innerHTML += /* html */ `
-    <div class="ticketCard">
+    <div class="ticketCard" data-id="${id}">
       <div class="ticketIcon">
         <i class="fa-solid fa-${minicategory} fa-4x" style="color: #444444;"></i>
       </div>
@@ -518,6 +534,9 @@ async function readTickets() {
          <div class="ticketTitle">${title}</div>
          <div class="ticketDate">${date}</div>
          <div class="ticketMemo">${memo}</div>
+       </div>
+       <div class="delete deleteBtn" >
+        <i class="fa-solid fa-trash-can fa-xl deleteBtn"></i>
        </div>
     </div>
         
@@ -527,7 +546,7 @@ async function readTickets() {
   group.all = tickets;
 
   (group.all || []).forEach((ticket) => {
-    console.log(ticket);
+    // console.log(ticket);
     let ticketArea = btnAllContent;
     ticketCard(
       ticketArea,
@@ -536,11 +555,12 @@ async function readTickets() {
       ticket.title,
       ticket.date,
       ticket.memo,
+      ticket.id,
     );
   });
 
   (group.sport || []).forEach((ticket) => {
-    console.log(ticket);
+    // console.log(ticket);
     let ticketArea = btn1Content;
     ticketCard(
       ticketArea,
@@ -549,11 +569,12 @@ async function readTickets() {
       ticket.title,
       ticket.date,
       ticket.memo,
+      ticket.id,
     );
   });
 
   (group.classic || []).forEach((ticket) => {
-    console.log(ticket);
+    // console.log(ticket);
     let ticketArea = btn2Content;
     ticketCard(
       ticketArea,
@@ -562,10 +583,11 @@ async function readTickets() {
       ticket.title,
       ticket.date,
       ticket.memo,
+      ticket.id,
     );
   });
   (group.concert || []).forEach((ticket) => {
-    console.log(ticket);
+    // console.log(ticket);
     let ticketArea = btn3Content;
     ticketCard(
       ticketArea,
@@ -574,10 +596,11 @@ async function readTickets() {
       ticket.title,
       ticket.date,
       ticket.memo,
+      ticket.id,
     );
   });
   (group.travel || []).forEach((ticket) => {
-    console.log(ticket);
+    // console.log(ticket);
     let ticketArea = btn4Content;
     ticketCard(
       ticketArea,
@@ -586,9 +609,22 @@ async function readTickets() {
       ticket.title,
       ticket.date,
       ticket.memo,
+      ticket.id,
     );
   });
 }
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".deleteBtn");
+
+  if (!btn) return;
+
+  const card = btn.closest(".ticketCard");
+  const id = card.dataset.id;
+
+  await deleteTicket(id);
+  await readTickets();
+});
 
 logoutBtn.addEventListener("click", async () => {
   const { error } = await supabase.auth.signOut();
