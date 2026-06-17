@@ -326,7 +326,6 @@ textarea::placeholder {
   justify-content: flex-start;
   align-items: center;
   scrollbar-width: thin;
-  scrollbar-color: #888 #f3efec;
   gap: 20px;
   padding: 20px;
   align-content: flex-start;
