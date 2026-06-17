@@ -622,6 +622,10 @@ document.addEventListener("click", async (e) => {
   const card = btn.closest(".ticketCard");
   const id = card.dataset.id;
 
+  const answer = confirm("삭제하시겠습니까?");
+
+  if (!answer) return;
+
   await deleteTicket(id);
   await readTickets();
 });
