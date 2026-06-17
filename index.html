@@ -16,9 +16,35 @@
     <link rel="stylesheet" href="./css/datePicker.css">
     <script>
       $( function() {
-        $( "#datepicker" ).datepicker({showButtonPanel: true});
+        $( "#datepicker" ).datepicker({
+          dateFormat: "yy.mm.dd",
+          showButtonPanel: true,
+
+          beforeShow: function () {
+            setTimeout(bindTodayButton, 0);
+          },
+
+          onChangeMonthYear: function () {
+            setTimeout(bindTodayButton, 0);
+          },
+        });
+
+        function bindTodayButton() {
+          $(".ui-datepicker-current")
+            .off("click")
+            .on("click", function (e) {
+              e.preventDefault();
+
+              const today = new Date();
+
+              $("#datepicker").datepicker("setDate", today);
+              $("#datepicker").datepicker("hide");
+            });
+        }
         $( "#datepicker" ).datepicker( "option", "dateFormat", "yy.mm.dd" );
-       } );
+      });
+      
+  
     </script>
 
     <script>
